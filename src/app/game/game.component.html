@@ -1,0 +1,14 @@
+<div class="field">
+    <div class="carddeck">
+        @for(card of deckOfCards; track card; let last = $last) {
+            @if(last) {
+                <img draggable="false" (click)="drawCard()" class="carddeck__top-card"  [ngClass]="{'card--draw': drawCardAnimation}" [ngStyle]="{'left.px': (deckOfCards.length - 1) * 5}" src="../../assets/img/cards/card_cover.png" alt="">
+                @if(drawCardAnimation) {
+                    <img draggable="false" [ngClass]="{'card--draw': drawCardAnimation}" [ngStyle]="{'left.px': (deckOfCards.length - 1) * 5}" src="../../assets/img/cards/clubs_10.png" alt="">
+                }
+            } @else {
+                <img draggable="false" [ngStyle]="{'left.px': card * 5}" src="../../assets/img/cards/card_cover.png" alt="">
+            }
+        }
+    </div>
+</div>

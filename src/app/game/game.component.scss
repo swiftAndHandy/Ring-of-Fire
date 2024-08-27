@@ -1,0 +1,57 @@
+@use "./../scss/abstracts/" as *;
+
+.field {
+    @include dflex();
+    width: 100vw;
+    height: 100vh;
+    max-width: 100%;
+    background-image: url("../../assets/img/table.webp");
+    background-size: cover;
+}
+
+.carddeck {
+    position: relative;
+    > img {
+        position: absolute;
+        width: 120px;
+    }
+    &__top-card {
+        rotate: 0deg;
+        transition: all 0.5s ease-in-out;
+        cursor: pointer;
+        &:hover {
+            transform: scale(1.1) translateY(-10px) rotate(10deg);
+        }
+        &.card--draw {
+            animation: fadeOut 0.5s forwards;
+        }
+    }
+}
+
+.card--draw {
+    animation: fadeIn 0.5s forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        transform: scale(1.1) translateY(-10px) rotate(10deg);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1.1) translateY(-10px) rotate(10deg);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        transform: scale(1.1) translateY(-10px) rotate(10deg);
+        opacity: 1;
+    }
+
+    to {
+        transform: scale(1.1) translateY(-10px) rotate(10deg);
+        opacity: 0;
+    }
+}
