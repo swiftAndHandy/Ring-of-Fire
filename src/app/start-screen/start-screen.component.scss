@@ -1,0 +1,38 @@
+@use "./../scss/abstracts/" as *;
+
+.startscreen {
+    @include dflex();
+    background-color: #404040;
+    width: 100vw;
+    height: 100vh;
+    max-width: 100%;
+    > img {
+        height: 100vh;
+        transform: translateX(2%);
+    }
+    > div {
+        cursor: pointer;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 56px;
+        > img {
+            width: 30vw;
+            height: auto;
+        }
+        > span {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-weight: 800;
+            font-size: 2rem;
+            width: 100%;
+            text-align: center;
+            user-select: none;
+        }
+        &:hover {
+            filter: brightness(1.75);
+        }
+    }
+}
