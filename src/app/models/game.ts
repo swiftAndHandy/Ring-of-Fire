@@ -1,5 +1,9 @@
 export class Game {
-    players: string[] = ['Generische Paula A', 'Generische Paula B', 'Generische Paula C'];
+    players: string[] = [
+        'Player A', 
+        'Player B',
+        'Player C',
+    ];
     cardDeck: string[] = [];
     playedCards: string[] = [];
     currentPlayer: number = 0;

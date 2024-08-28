@@ -1,6 +1,5 @@
 @for(player of game.players; track $index) {
-<app-player [ngStyle]="{'top.px': $index * 150}" class="player-overview"
-[name]="player"></app-player>
+<app-player [ngStyle]="{'top.px': $index * 160}" class="player-overview" [name]="player"></app-player>
 }
 
 <div class="field">
@@ -14,13 +13,15 @@
         }
 
         @for(card of game.playedCards; track card; let index = $index) {
-            <img draggable="false" class="card--played" 
-            [ngStyle]="{'left.px':  (calculatedOffset) * game.deckOffset - index}"
-            src="../../assets/img/cards/{{ game.playedCards[index] }}.png" alt="">
-            }
+        <img draggable="false" class="card--played" [ngStyle]="{'left.px':  (calculatedOffset) * game.deckOffset - index}" src="../../assets/img/cards/{{ game.playedCards[index] }}.png" alt="">
+        }
 
         @if(drawCardAnimation) {
         <img draggable="false" [ngClass]="{'card--draw': drawCardAnimation}" [ngStyle]="{'left.px':  (calculatedOffset) * game.deckOffset - (game.playedCards.length-1)}" src="../../assets/img/cards/{{ game.playedCards[game.playedCards.length-1] }}.png" alt="">
         }
     </div>
 </div>
+
+<button mat-fab color="primary" (click)="openDialog()" class="player--add">
+    <mat-icon>add</mat-icon>
+</button>
