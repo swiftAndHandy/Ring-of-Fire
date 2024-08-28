@@ -1,14 +1,21 @@
 <div class="field">
     <div class="carddeck">
         @for(card of game.cardDeck; track card; let index = $index; let last = $last) {
-            @if(last) {
-                <img draggable="false" (click)="drawCard()" class="carddeck__top-card"  [ngClass]="{'card--draw': drawCardAnimation}" [ngStyle]="{'left.px': calculatedOffset + (game.cardDeck.length - 1) * game.deckOffset}" src="../../assets/img/cards/card_cover.png" alt="">
-                @if(drawCardAnimation) {
-                    <img draggable="false" [ngClass]="{'card--draw': drawCardAnimation}" [ngStyle]="{'left.px':  calculatedOffset + (game.cardDeck.length - 1) * game.deckOffset}" src="../../assets/img/cards/clubs_10.png" alt="">
-                }
-            } @else {
-                <img draggable="false" [ngStyle]="{'left.px':  calculatedOffset + index * game.deckOffset, 'rotate.deg': index * 10}" src="../../assets/img/cards/card_cover.png" alt="">
+        @if(last) {
+        <img draggable="false" (click)="drawCard()" class="carddeck__top-card" [ngClass]="{'card--draw': drawCardAnimation}" [ngStyle]="{'left.px': calculatedOffset + (game.cardDeck.length - 1) * game.deckOffset}" src="../../assets/img/cards/card_cover.png" alt="">
+        } @else {
+        <img draggable="false" [ngStyle]="{'left.px':  calculatedOffset + index * game.deckOffset}" src="../../assets/img/cards/card_cover.png" alt="">
+        }
+        }
+
+        @for(card of game.playedCards; track card; let index = $index) {
+            <img draggable="false" class="card--played" 
+            [ngStyle]="{'left.px':  (calculatedOffset) * game.deckOffset - index}"
+            src="../../assets/img/cards/{{ game.playedCards[index] }}.png" alt="">
             }
+
+        @if(drawCardAnimation) {
+        <img draggable="false" [ngClass]="{'card--draw': drawCardAnimation}" [ngStyle]="{'left.px':  (calculatedOffset) * game.deckOffset - (game.playedCards.length-1)}" src="../../assets/img/cards/{{ game.playedCards[game.playedCards.length-1] }}.png" alt="">
         }
     </div>
 </div>

@@ -1,7 +1,7 @@
 export class Game {
     player: string[] = [];
     cardDeck: string[] = [];
-    playdCards: string[] = [];
+    playedCards: string[] = [];
     currentPlayer: number = 0;
     deckOffset: number = 0.2;
 

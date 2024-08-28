@@ -14,11 +14,13 @@
     > img {
         position: absolute;
         width: 120px;
+        user-select: none;
     }
     &__top-card {
         rotate: 0deg;
         transition: all 0.5s ease-in-out;
         cursor: pointer;
+        user-select: none;
         &:hover {
             transform: scale(1.1) translateY(-10px) rotate(10deg);
         }
@@ -29,7 +31,15 @@
 }
 
 .card--draw {
-    animation: fadeInCard 1.0s forwards;
+    animation: fadeInCard 1s forwards;
+    user-select: none;
+}
+
+.card--played {
+    transform: scale(1.5) translateX(130px) translateY(-180px) rotate(178deg);
+    user-select: none;
+    opacity: 0;
+    animation: showAtStack 1s forwards;
 }
 
 @keyframes fadeInCard {
@@ -44,7 +54,7 @@
     }
 
     100% {
-        transform: scale(1.5) translateX(-10px) translateY(-180px) rotate(178deg);
+        transform: scale(1.5) translateX(130px) translateY(-180px) rotate(178deg);
     }
 }
 
@@ -57,5 +67,19 @@
     to {
         transform: scale(1.1) translateY(-10px) rotate(10deg);
         opacity: 0;
+    }
+}
+
+@keyframes showAtStack {
+    0% {
+        opacity: 0;
+    }
+
+    90% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
     }
 }

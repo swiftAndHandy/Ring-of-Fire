@@ -20,9 +20,20 @@ export class GameComponent {
     this.game = new Game();
     console.log(this.game);
     this.calculatedOffset = -(this.game.cardDeck.length / 2) * 2;
+    console.log(this.game.playedCards.length);
+
   }
 
   drawCard() {
-    this.drawCardAnimation = true;
+    if (!this.drawCardAnimation) {
+      this.drawCardAnimation = true;
+      let currentCard = this.game.cardDeck.pop();
+      if (currentCard !== undefined) {
+        this.game.playedCards.push(currentCard);
+      }
+      setTimeout(() => {
+        this.drawCardAnimation = false;
+      }, 1000);
+    }
   }
 }
