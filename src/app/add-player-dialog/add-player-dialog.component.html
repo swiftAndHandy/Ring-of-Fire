@@ -3,10 +3,10 @@
     <p>Please enter playername</p>
     <mat-form-field>
         <mat-label>Name</mat-label>
-        <input matInput [(ngModel)]="playernameToAdd">
+        <input matInput cdkFocusInitial [(ngModel)]="playernameToAdd">
     </mat-form-field>
 </div>
 <div mat-dialog-actions class="btns">
     <button mat-button (click)="onNoClick()">Cancel</button>
-    <button mat-button [mat-dialog-close]="playernameToAdd" cdkFocusInitial>Add player</button>
+    <button mat-button [disabled]="playernameToAdd.length === 0" [mat-dialog-close]="playernameToAdd">Add player</button>
 </div>

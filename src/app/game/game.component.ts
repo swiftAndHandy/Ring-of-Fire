@@ -31,7 +31,7 @@ export class GameComponent {
     const dialogRef = this.dialog.open(AddPlayerDialogComponent);
 
     dialogRef.afterClosed().subscribe(playernameToAdd => {
-      this.game.players.push(playernameToAdd);
+      playernameToAdd && playernameToAdd.length > 0 && this.game.players.push(playernameToAdd);
 
     });
   }

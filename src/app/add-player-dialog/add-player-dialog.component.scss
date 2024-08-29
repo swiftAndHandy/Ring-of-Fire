@@ -2,6 +2,7 @@
 
 .btns {
     @include dflex();
+    gap:16px;
     >button {
         color: black;
         cursor: pointer;

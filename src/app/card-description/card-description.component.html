@@ -3,4 +3,14 @@
     <mat-card-title>{{cardAction[currentIndex].title}}</mat-card-title>
     <mat-card-content>{{cardAction[currentIndex].description}}</mat-card-content>
 </mat-card>
+} @else {
+    <mat-card>
+        <mat-card-title>How to Play</mat-card-title>
+        <mat-card-content>
+            <ol>
+                <li>Add as many players as you want. </li>
+                <li>Draw a card.</li>
+                <li>Happy drinking.</li>
+            </ol></mat-card-content>
+    </mat-card>
 }
