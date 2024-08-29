@@ -1,0 +1,13 @@
+@use "../scss/abstracts/" as *;
+
+.btns {
+    @include dflex();
+    >button {
+        color: black;
+        cursor: pointer;
+    }
+}
+
+.reduce-padding {
+    padding-bottom: 0;
+}
