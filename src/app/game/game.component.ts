@@ -6,11 +6,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import { AddPlayerDialogComponent } from '../add-player-dialog/add-player-dialog.component';
+import { CardDescriptionComponent } from "../card-description/card-description.component";
 
 @Component({
   selector: 'app-game',
   standalone: true,
-  imports: [CommonModule, PlayerComponent, MatIconModule, MatButtonModule, MatDialogModule],
+  imports: [CommonModule, PlayerComponent, MatIconModule, MatButtonModule, MatDialogModule, CardDescriptionComponent],
   templateUrl: './game.component.html',
   styleUrl: './game.component.scss'
 })
@@ -43,7 +44,6 @@ export class GameComponent {
         this.game.playedCards.push(currentCard);
         this.game.currentPlayer++;
         this.game.currentPlayer = this.game.currentPlayer === this.game.players.length ? 0 : this.game.currentPlayer;
-        console.log(this.game.currentPlayer);
 
         setTimeout(() => {
           this.drawCardAnimation = false;
