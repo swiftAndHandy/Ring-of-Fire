@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { Firestore, addDoc, collection, collectionData, doc, docData } from '@angular/fire/firestore';
+import { Firestore, addDoc, collection, collectionData, doc, docData, updateDoc } from '@angular/fire/firestore';
 import { Observable, of } from 'rxjs';
 import { Game } from '../../models/game';
 
@@ -8,7 +8,6 @@ import { Game } from '../../models/game';
 })
 export class FirebaseService {
   firestore: Firestore = inject(Firestore)
-  games$: Observable<any[]> = of([]);
 
   constructor() { }
 
@@ -23,6 +22,11 @@ export class FirebaseService {
   }
 
 
+  async updateGame(game: Game, gameId: string) {
+    const gameAsJson = game.convertToJson();
+    const gameRef = doc(collection(this.firestore, 'games'), gameId);
+    return await updateDoc(gameRef, gameAsJson);
+  }
 
 
 }

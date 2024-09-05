@@ -4,6 +4,9 @@ export class Game {
     playedCards: string[] = [];
     currentPlayer: number = 0;
     deckOffset: number = 0.2;
+    session: string = '';
+    drawCardAnimation: boolean = false;
+    calculatedOffset: number = 0;
 
     constructor() {
         for (let i = 1; i <= 13; i++) {
@@ -33,6 +36,7 @@ export class Game {
             playedCards: this.playedCards,
             currentPlayer: this.currentPlayer,
             deckOffset: this.deckOffset,
+            drawCardAnimation: this.drawCardAnimation,
         };
     }
 }
