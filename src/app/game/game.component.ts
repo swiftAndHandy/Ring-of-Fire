@@ -57,7 +57,6 @@ export class GameComponent {
 
   newGame() {
     this.game = new Game();
-    // this.firestore.addGame(this.game);
   }
 
   drawCard() {

@@ -19,7 +19,7 @@ export class FirebaseService {
 
   async addGame(game: Game) {
     const gameAsJson = game.convertToJson();
-    await addDoc(collection(this.firestore, 'games'), gameAsJson);
+    return await addDoc(collection(this.firestore, 'games'), gameAsJson);
   }
 
 
