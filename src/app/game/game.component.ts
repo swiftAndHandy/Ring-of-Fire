@@ -4,9 +4,11 @@ import { Game } from '../models/game';
 import { PlayerComponent } from "../player/player.component";
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import {MatDialog, MatDialogModule} from '@angular/material/dialog';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { AddPlayerDialogComponent } from '../add-player-dialog/add-player-dialog.component';
 import { CardDescriptionComponent } from "../card-description/card-description.component";
+import { FirebaseService } from '../services/firebase/firebase.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-game',
@@ -18,13 +20,30 @@ import { CardDescriptionComponent } from "../card-description/card-description.c
 export class GameComponent {
 
   drawCardAnimation: boolean = false;
-  game: Game;
+  game!: Game;
   calculatedOffset: number = 0;
 
-  constructor(public dialog: MatDialog) {
-    this.game = new Game();
-    console.log(this.game);
+  subscribedGame?: Object;
+
+  constructor(private route: ActivatedRoute, private firestore: FirebaseService, public dialog: MatDialog) {
+  }
+
+  ngOnInit(): void {
+    this.newGame();
+    this.route.params.subscribe((params) => {
+      this.subscribedGame = this.firestore.getGames(params['id']).subscribe((game) => {
+        console.log(game);
+        this.game.currentPlayer = game.currentPlayer;
+        this.game.playedCards = game.playedCards;
+        this.game.players = game.players;
+        this.game.cardDeck = game.cardDeck;
+      });
+    })
+
     this.calculatedOffset = -(this.game.cardDeck.length / 2) * 2;
+  }
+
+  ngOnDestroy() {
   }
 
   openDialog(): void {
@@ -34,6 +53,11 @@ export class GameComponent {
       playernameToAdd && playernameToAdd.length > 0 && this.game.players.push(playernameToAdd);
 
     });
+  }
+
+  newGame() {
+    this.game = new Game();
+    // this.firestore.addGame(this.game);
   }
 
   drawCard() {

@@ -22,8 +22,17 @@ export class Game {
             let randomIndex = Math.floor(Math.random() * currentIndex);
             currentIndex--;
 
-            [cards[currentIndex], cards[randomIndex]] = 
-            [cards[randomIndex], cards[currentIndex]];
+            [cards[currentIndex], cards[randomIndex]] = [cards[randomIndex], cards[currentIndex]];
         }
+    }
+
+    convertToJson() {
+        return {
+            players: this.players,
+            cardDeck: this.cardDeck,
+            playedCards: this.playedCards,
+            currentPlayer: this.currentPlayer,
+            deckOffset: this.deckOffset,
+        };
     }
 }
